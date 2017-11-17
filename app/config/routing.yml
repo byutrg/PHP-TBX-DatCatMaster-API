@@ -1,0 +1,7 @@
+app:
+    resource: '@TBXMasterListBundle/Controller/'
+    type: annotation
+
+default:
+    type: rest
+    resource: TBXMasterListBundle\Controller\DefaultController

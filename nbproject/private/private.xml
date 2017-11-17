@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/wamp64/www/TBXMasterAPI/app/config/routing.yml</file>
+            <file>file:/C:/wamp64/www/TBXMasterAPI/LICENSE_symfony</file>
+            <file>file:/C:/wamp64/www/TBXMasterAPI/app/config/config.yml</file>
+            <file>file:/C:/wamp64/www/TBXMasterAPI/src/TBXMasterListBundle/Entity/ValueTypes.php</file>
+            <file>file:/C:/wamp64/www/TBXMasterAPI/src/TBXMasterListBundle/Controller/DefaultController.php</file>
+            <file>file:/C:/wamp64/www/TBXMasterAPI/app/Resources/views/base.html.twig</file>
+            <file>file:/C:/wamp64/www/TBXMasterAPI/src/TBXMasterListBundle/Repository/CategoriesRepository.php</file>
+            <file>file:/C:/wamp64/www/TBXMasterAPI/app/Resources/views/default/index.html.twig</file>
+            <file>file:/C:/wamp64/www/TBXMasterAPI/src/TBXMasterListBundle/Entity/PermittedValues.php</file>
+            <file>file:/C:/wamp64/www/TBXMasterAPI/src/TBXMasterListBundle/Entity/Classifications.php</file>
+            <file>file:/C:/wamp64/www/TBXMasterAPI/app/logs/prod.log</file>
+            <file>file:/C:/wamp64/www/TBXMasterAPI/src/TBXMasterListBundle/Entity/Categories.php</file>
+            <file>file:/C:/wamp64/www/TBXMasterAPI/composer.json</file>
+        </group>
+    </open-files>
+</project-private>

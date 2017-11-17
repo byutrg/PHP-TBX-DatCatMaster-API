@@ -1,0 +1,32 @@
+<?php
+
+namespace TBXMasterListBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ValueTypes
+ *
+ * @ORM\Table(name="value_types", uniqueConstraints={@ORM\UniqueConstraint(name="type", columns={"type"})})
+ * @ORM\Entity
+ */
+class ValueTypes
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=256, nullable=false)
+     */
+    private $type;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

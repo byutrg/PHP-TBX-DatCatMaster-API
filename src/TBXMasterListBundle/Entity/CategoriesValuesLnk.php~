@@ -1,0 +1,45 @@
+<?php
+
+namespace TBXMasterListBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * CategoriesValuesLnk
+ *
+ * @ORM\Table(name="categories_values_lnk", indexes={@ORM\Index(name="category_id", columns={"category_id"}), @ORM\Index(name="value_id", columns={"value_id"})})
+ * @ORM\Entity
+ */
+class CategoriesValuesLnk
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \TBXMasterListBundle\Entity\PermittedValues
+     *
+     * @ORM\ManyToOne(targetEntity="TBXMasterListBundle\Entity\PermittedValues")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="value_id", referencedColumnName="id")
+     * })
+     */
+    private $value;
+
+    /**
+     * @var \TBXMasterListBundle\Entity\Categories
+     *
+     * @ORM\ManyToOne(targetEntity="TBXMasterListBundle\Entity\Categories")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * })
+     */
+    private $category;
+
+
+}

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
+-- version 4.3.8
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 17, 2017 at 09:50 PM
--- Server version: 5.7.9
--- PHP Version: 5.6.16
+-- Host: localhost
+-- Generation Time: Dec 22, 2017 at 07:09 PM
+-- Server version: 5.6.32-78.1-log
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `tbx_master_dcs`
@@ -26,18 +26,13 @@ SET time_zone = "+00:00";
 -- Table structure for table `categories`
 --
 
-DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `identifier` varchar(256) NOT NULL,
   `PID` varchar(256) DEFAULT NULL,
   `description` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
-  `classification_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `identifier` (`identifier`),
-  UNIQUE KEY `PID` (`PID`),
-  KEY `classification_id` (`classification_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=latin1;
+  `classification_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `categories`
@@ -106,7 +101,7 @@ INSERT INTO `categories` (`id`, `identifier`, `PID`, `description`, `classificat
 (60, 'quantity', NULL, 'A measurable quantity associated with a concept.', 3),
 (61, 'range', NULL, 'The pair of limits within which a quantity is measured, as expressed by stating the lower and upper permissible values. ', 3),
 (62, 'register', 'http://www.datcatinfo.net/datcat/DC-423', 'Classification indicating the level of language assigned to a term.', 6),
-(63, 'relatedConcept', NULL, 'A concept that has an associative relation to another concept, such as teacher and school. A element that has a type attribute value of ''relatedConcept'' can also have a target attribute pointing to the entry identifier of the related concept.', 3),
+(63, 'relatedConcept', 'http://www.datcatinfo.net/datcat/DC-435', 'A concept that has an associative relation to another concept, such as teacher and school. A element that has a type attribute value of ''relatedConcept'' can also have a target attribute pointing to the entry identifier of the related concept.', 3),
 (64, 'relatedConceptBroader', 'http://www.datcatinfo.net/datcat/DC-436', 'A concept that is broader at some level with respect to a related or associated concept, but without comprising any reference to a generic or partitive system. A element that has a type attribute value of ''relatedConceptBroader'' can also have a target attribute pointing to the entry identifier of the related concept.', 3),
 (65, 'relatedConceptNarrower', 'http://www.datcatinfo.net/datcat/DC-437', 'A concept that is narrower at some level with respect to a related or associated concept, but without comprising any reference to a generic or partitive system. A element that has a type attribute value of ''relatedConceptNarrower'' can also have a target attribute pointing to the entry identifier of the related concept.', 3),
 (66, 'reliabilityCode', 'http://www.datcatinfo.net/datcat/DC-439', 'A code assigned to a data-category or record indicating accuracy and/or completeness. The content of the element when it has a type attribute value of ''reliabilityCode'' shall be a value from 1 (least reliable) to 10 (most reliable).', 3),
@@ -147,7 +142,8 @@ INSERT INTO `categories` (`id`, `identifier`, `PID`, `description`, `classificat
 (101, 'xGraphic', ' http://www.datcatinfo.net/datcat/DC-2920', 'External graphic file.', 9),
 (102, 'xMathML', NULL, 'A mathematical concept expressed in MathML.', 9),
 (103, 'xSource', NULL, 'An external source of information such as the source of a definition or context sentence.', 9),
-(104, 'xVideo', NULL, 'External video file.', 9);
+(104, 'xVideo', NULL, 'External video file.', 9),
+(105, 'relatedTerm', 'http://www.datcatinfo.net/datcat/DC-438', ' A term connected to another term by a coordinate or associative relation.', 5);
 
 -- --------------------------------------------------------
 
@@ -155,13 +151,9 @@ INSERT INTO `categories` (`id`, `identifier`, `PID`, `description`, `classificat
 -- Table structure for table `categories_permitted_values`
 --
 
-DROP TABLE IF EXISTS `categories_permitted_values`;
 CREATE TABLE IF NOT EXISTS `categories_permitted_values` (
   `categories_id` int(11) NOT NULL,
-  `permitted_values_id` int(11) NOT NULL,
-  PRIMARY KEY (`categories_id`,`permitted_values_id`),
-  KEY `IDX_7929AE2CA21214B7` (`categories_id`),
-  KEY `IDX_7929AE2CBD0C40D7` (`permitted_values_id`)
+  `permitted_values_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -381,12 +373,9 @@ INSERT INTO `categories_permitted_values` (`categories_id`, `permitted_values_id
 -- Table structure for table `classifications`
 --
 
-DROP TABLE IF EXISTS `classifications`;
 CREATE TABLE IF NOT EXISTS `classifications` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `classification` varchar(256) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `classification` (`classification`)
+  `id` int(11) NOT NULL,
+  `classification` varchar(256) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
@@ -410,14 +399,10 @@ INSERT INTO `classifications` (`id`, `classification`) VALUES
 -- Table structure for table `permitted_values`
 --
 
-DROP TABLE IF EXISTS `permitted_values`;
 CREATE TABLE IF NOT EXISTS `permitted_values` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `value` varchar(256) NOT NULL,
-  `type` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `value` (`value`),
-  KEY `type` (`type`)
+  `type` int(11) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=latin1;
 
 --
@@ -556,12 +541,9 @@ INSERT INTO `permitted_values` (`id`, `value`, `type`) VALUES
 -- Table structure for table `value_types`
 --
 
-DROP TABLE IF EXISTS `value_types`;
 CREATE TABLE IF NOT EXISTS `value_types` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(256) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `type` (`type`)
+  `id` int(11) NOT NULL,
+  `type` varchar(256) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
@@ -573,6 +555,64 @@ INSERT INTO `value_types` (`id`, `type`) VALUES
 (2, 'picklist');
 
 --
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `identifier` (`identifier`), ADD UNIQUE KEY `PID` (`PID`), ADD KEY `classification_id` (`classification_id`);
+
+--
+-- Indexes for table `categories_permitted_values`
+--
+ALTER TABLE `categories_permitted_values`
+  ADD PRIMARY KEY (`categories_id`,`permitted_values_id`), ADD KEY `IDX_7929AE2CA21214B7` (`categories_id`), ADD KEY `IDX_7929AE2CBD0C40D7` (`permitted_values_id`);
+
+--
+-- Indexes for table `classifications`
+--
+ALTER TABLE `classifications`
+  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `classification` (`classification`);
+
+--
+-- Indexes for table `permitted_values`
+--
+ALTER TABLE `permitted_values`
+  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `value` (`value`), ADD KEY `type` (`type`);
+
+--
+-- Indexes for table `value_types`
+--
+ALTER TABLE `value_types`
+  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `type` (`type`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=106;
+--
+-- AUTO_INCREMENT for table `classifications`
+--
+ALTER TABLE `classifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `permitted_values`
+--
+ALTER TABLE `permitted_values`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=125;
+--
+-- AUTO_INCREMENT for table `value_types`
+--
+ALTER TABLE `value_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
 -- Constraints for dumped tables
 --
 
@@ -580,20 +620,20 @@ INSERT INTO `value_types` (`id`, `type`) VALUES
 -- Constraints for table `categories`
 --
 ALTER TABLE `categories`
-  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`classification_id`) REFERENCES `classifications` (`id`) ON DELETE NO ACTION;
+ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`classification_id`) REFERENCES `classifications` (`id`) ON DELETE NO ACTION;
 
 --
 -- Constraints for table `categories_permitted_values`
 --
 ALTER TABLE `categories_permitted_values`
-  ADD CONSTRAINT `FK_7929AE2CA21214B7` FOREIGN KEY (`categories_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_7929AE2CBD0C40D7` FOREIGN KEY (`permitted_values_id`) REFERENCES `permitted_values` (`id`) ON DELETE CASCADE;
+ADD CONSTRAINT `FK_7929AE2CA21214B7` FOREIGN KEY (`categories_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
+ADD CONSTRAINT `FK_7929AE2CBD0C40D7` FOREIGN KEY (`permitted_values_id`) REFERENCES `permitted_values` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `permitted_values`
 --
 ALTER TABLE `permitted_values`
-  ADD CONSTRAINT `permitted_values_ibfk_1` FOREIGN KEY (`type`) REFERENCES `value_types` (`id`) ON DELETE NO ACTION;
+ADD CONSTRAINT `permitted_values_ibfk_1` FOREIGN KEY (`type`) REFERENCES `value_types` (`id`) ON DELETE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

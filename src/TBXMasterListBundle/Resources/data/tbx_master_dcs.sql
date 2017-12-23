@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 22, 2017 at 07:09 PM
+-- Generation Time: Dec 22, 2017 at 07:16 PM
 -- Server version: 5.6.32-78.1-log
 -- PHP Version: 5.6.30
 
@@ -365,7 +365,8 @@ INSERT INTO `categories_permitted_values` (`categories_id`, `permitted_values_id
 (101, 1),
 (102, 1),
 (103, 1),
-(104, 1);
+(104, 1),
+(105, 1);
 
 -- --------------------------------------------------------
 

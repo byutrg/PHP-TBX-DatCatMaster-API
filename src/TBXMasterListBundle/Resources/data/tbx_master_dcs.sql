@@ -143,7 +143,10 @@ INSERT INTO `categories` (`id`, `identifier`, `PID`, `description`, `classificat
 (102, 'xMathML', NULL, 'A mathematical concept expressed in MathML.', 9),
 (103, 'xSource', NULL, 'An external source of information such as the source of a definition or context sentence.', 9),
 (104, 'xVideo', NULL, 'External video file.', 9),
-(105, 'relatedTerm', 'http://www.datcatinfo.net/datcat/DC-438', ' A term connected to another term by a coordinate or associative relation.', 5);
+(105, 'relatedTerm', 'http://www.datcatinfo.net/datcat/DC-438', ' A term connected to another term by a coordinate or associative relation.', 5),
+(106, 'date', 'http://www.datcatinfo.net/datcat/DC-4335', 'The point of time at which a transaction or event. \r\n\r\nThe layout YYYY-MM-DD according to ISO 8601, with the possibility of expansion to date and time, e.g., YYYY-MM-DD hh:mm:ss, should be used to represent dates. If a database does not use this format, conversion of date-related data can be required before interchanging data. The “date” category can be associated with virtually any element in any kind of record. It can be used as an administrative notation to indicate times when records are entered, edited or approved, or it can be part of the actual knowledge content in the record itself, such as in a bibliographic record.\r\n\r\nNote: /date/ is included by default in the Core module of TBX.', 10),
+(107, 'note', 'http://www.datcatinfo.net/datcat/DC-382', 'A statement that provides further information on any part of a language resource entry.\r\n\r\nNote: /note/ is included by default in the Core module of TBX.', 11),
+(108, 'term', 'http://www.datcatinfo.net/datcat/DC-508', 'A verbal designation of a general concept in a specific subject field. \r\n\r\nTerms can consist of single words or be composed of multiword strings. The distinguishing characteristic of a term is that it is assigned to a single concept, as opposed to a phraseological unit, which combines more than one concept in a lexicalized fashion to express complex situations. "Quality assurance system" is a term, whereas "satisfy quality requirements" is a phraseological unit, specifically a collocation.\r\n\r\nNote: /term/ is included by default in the Core module of TBX.', 12);
 
 -- --------------------------------------------------------
 
@@ -366,7 +369,10 @@ INSERT INTO `categories_permitted_values` (`categories_id`, `permitted_values_id
 (102, 1),
 (103, 1),
 (104, 1),
-(105, 1);
+(105, 1),
+(106, 125),
+(107, 2),
+(108, 1);
 
 -- --------------------------------------------------------
 
@@ -392,7 +398,10 @@ INSERT INTO `classifications` (`id`, `classification`) VALUES
 (6, 'termNote'),
 (7, 'transac'),
 (8, 'transacNote'),
-(9, 'xref');
+(9, 'xref'),
+(10, 'date'),
+(11, 'note'),
+(12, 'term');
 
 -- --------------------------------------------------------
 
@@ -534,7 +543,8 @@ INSERT INTO `permitted_values` (`id`, `value`, `type`) VALUES
 (121, 'symbol', 2),
 (122, 'synonym', 2),
 (123, 'synonymousPhrase', 2),
-(124, 'variant', 2);
+(124, 'variant', 2),
+(125, 'date', 1),
 
 -- --------------------------------------------------------
 

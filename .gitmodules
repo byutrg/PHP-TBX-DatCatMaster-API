@@ -1,0 +1,4 @@
+[submodule "src/TBXMasterListBundle/Resources/data"]
+	path = src/TBXMasterListBundle/Resources/data
+	url = https://github.com/byutrg/sql-tbx-master-datcat-repo.git
+	branch = sqlite

@@ -21,6 +21,12 @@ The following routes are available:
 Installation
 ------------
 
+Initialize and update submodules:
+```
+$ git submodule init
+$ git submodule update
+```
+
 Create an SQL database (The default name is 'tbx_master_dcs').  Import the SQL file in "src/TBXMasterListBundle/Resources/data/tbx_master_dcs.sql".
 
 Clone this repository into the appropriate directory on your webserver.
